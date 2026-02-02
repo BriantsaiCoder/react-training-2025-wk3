@@ -12,9 +12,6 @@ function App() {
     username: '',
     password: '',
   });
-useEffect(() => {
-  
-}, []);
 
   // 登入狀態管理(控制顯示登入或產品頁）
   const [isAuth, setIsAuth] = useState(false);
@@ -56,24 +53,16 @@ useEffect(() => {
   // 檢查登入狀態
   const checkLogin = async () => {
     try {
-      // 從 Cookie 取得 Token
-      const token = document.cookie
-        .split('; ')
-        .find((row) => row.startsWith('hexToken='))
-        ?.split('=')[1];
-
-      console.log('目前 Token:', token);
-
-      if (token) {
-        axios.defaults.headers.common.Authorization = token;
-
-        // 驗證 Token 是否有效
-        const res = await axios.post(`${API_BASE}/api/user/check`);
-        const { success } = res.data;
-        console.log('Token 驗證結果：', success);
-      }
+      // 驗證 Token 是否有效
+      const res = await axios.post(`${API_BASE}/api/user/check`);
+      const { success } = res.data;
+      console.log('Token 驗證結果：', success);
+      setIsAuth(true);
+      // 取得產品資料
+      getData();
     } catch (error) {
       console.error('Token 驗證失敗：', error.response?.data);
+      setIsAuth(false);
     }
   };
   // 取得產品資料
@@ -86,6 +75,21 @@ useEffect(() => {
       console.error('取得產品失敗：', err.response?.data?.message);
     }
   };
+
+  useEffect(() => {
+    // 從 Cookie 取得 Token
+    const token = document.cookie
+      .split('; ')
+      .find((row) => row.startsWith('hexToken='))
+      ?.split('=')[1];
+
+    // console.log('目前 Token:', token);
+
+    if (token) {
+      axios.defaults.headers.common.Authorization = token;
+    }
+    checkLogin();
+  }, []);
   return (
     <>
       {!isAuth ? (
