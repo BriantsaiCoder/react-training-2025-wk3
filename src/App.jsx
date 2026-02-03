@@ -316,7 +316,6 @@ function App() {
                     {templateData.imageUrl ? (
                       <img className='img-fluid' src={templateData.imageUrl} alt='主圖' />
                     ) : null}
-                    <img className='img-fluid' src={null} alt='主圖' />
                   </div>
                   <div>
                     {templateData.imagesUrl.map((image, index) => (
