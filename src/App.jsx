@@ -291,7 +291,11 @@ function App() {
           <div className='modal-content border-0'>
             <div className='modal-header bg-dark text-white'>
               <h5 id='productModalLabel' className='modal-title'>
-                <span>新增產品</span>
+                <span>
+                  {modalType === 'create' && '新增產品'}
+                  {modalType === 'edit' && '編輯產品'}
+                  {modalType === 'delete' && '刪除產品'}
+                </span>
               </h5>
               <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
             </div>
@@ -334,10 +338,14 @@ function App() {
                       </div>
                     ))}
 
-                    <button className='btn btn-outline-primary btn-sm d-block w-100'>新增圖片</button>
+                    <button className='btn btn-outline-primary btn-sm d-block w-100' onClick={() => handleAddImage()}>
+                      新增圖片
+                    </button>
                   </div>
                   <div>
-                    <button className='btn btn-outline-danger btn-sm d-block w-100'>刪除圖片</button>
+                    <button className='btn btn-outline-danger btn-sm d-block w-100' onClick={() => handleRemoveImage()}>
+                      刪除圖片
+                    </button>
                   </div>
                 </div>
                 <div className='col-sm-8'>
