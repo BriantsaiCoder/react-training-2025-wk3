@@ -329,8 +329,9 @@ function App() {
                           className='form-control'
                           placeholder={`圖片網址${index + 1}`}
                           value={image}
+                          onChange={(e) => handleImageChange(index, e.target.value)}
                         />
-                        {image && <img className='img-fluid' src={null} alt={`副圖${index + 1}`} />}
+                        {image && <img className='img-fluid' src={image} alt={`副圖${index + 1}`} />}
                       </div>
                     ))}
 
