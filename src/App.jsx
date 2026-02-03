@@ -189,7 +189,7 @@ function App() {
     try {
       const response = await axios.delete(`${API_BASE}/api/${API_PATH}/admin/product/${id}`);
       console.log('產品刪除成功：', response.data);
-      alert('產品刪除成功！');
+      // alert('產品刪除成功！');
 
       // 關閉 Modal 並重新載入資料
       closeModal();
@@ -210,7 +210,9 @@ function App() {
     if (token) {
       axios.defaults.headers.common.Authorization = token;
     }
-    productModalRef.current = new bootstrap.Modal('#productModal');
+    productModalRef.current = new bootstrap.Modal('#productModal', {
+      keyboard: false,
+    });
 
     // Modal 關閉時移除焦點
     document.querySelector('#productModal').addEventListener('hide.bs.modal', () => {
