@@ -337,15 +337,23 @@ function App() {
                         {image && <img className='img-fluid' src={image} alt={`副圖${index + 1}`} />}
                       </div>
                     ))}
-
-                    <button className='btn btn-outline-primary btn-sm d-block w-100' onClick={() => handleAddImage()}>
-                      新增圖片
-                    </button>
+                    {templateData.imagesUrl.length < 5 &&
+                      templateData.imagesUrl[templateData.imagesUrl.length - 1] !== '' && (
+                        <button
+                          className='btn btn-outline-primary btn-sm d-block w-100 my-2'
+                          onClick={() => handleAddImage()}>
+                          新增圖片
+                        </button>
+                      )}
                   </div>
                   <div>
-                    <button className='btn btn-outline-danger btn-sm d-block w-100' onClick={() => handleRemoveImage()}>
-                      刪除圖片
-                    </button>
+                    {templateData.imagesUrl.length >= 1 && (
+                      <button
+                        className='btn btn-outline-danger btn-sm d-block w-100'
+                        onClick={() => handleRemoveImage()}>
+                        刪除圖片
+                      </button>
+                    )}
                   </div>
                 </div>
                 <div className='col-sm-8'>
