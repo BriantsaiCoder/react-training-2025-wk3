@@ -76,7 +76,7 @@ const ProductModal = memo(
                     {/* 副圖片 */}
                     <div>
                       {productData.imagesUrl?.map((image, index) => (
-                        <div key={index}>
+                        <div key={`image-${index}-${image || 'empty'}`}>
                           <label htmlFor={`imageUrl-${index}`} className='form-label'>
                             輸入圖片網址
                           </label>

@@ -76,7 +76,8 @@ export const useAuth = () => {
     } else {
       setIsLoading(false);
     }
-  }, [checkLogin]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // 只在組件掛載時執行一次
 
   return {
     isAuth,
